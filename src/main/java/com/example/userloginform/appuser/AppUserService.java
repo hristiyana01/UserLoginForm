@@ -23,6 +23,7 @@ public class AppUserService implements UserDetailsService {
     }
     public String singUpUser(AppUser appUser) {
         boolean userExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();
+
         if(userExists) {
             throw new IllegalStateException("email already taken");
         }
@@ -32,8 +33,7 @@ public class AppUserService implements UserDetailsService {
 
         appUserRepository.save(appUser);
 
-        // TODO SEND CONFIRMATION TOKEN
-
+        //TODO: SEND CONFIRMATION TOKEN
         return "it works";
     }
 }

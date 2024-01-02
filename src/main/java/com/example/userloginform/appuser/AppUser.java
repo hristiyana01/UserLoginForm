@@ -18,17 +18,19 @@ import java.util.Collections;
 @NoArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
-    @Id
+
+
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1
     )
+    @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -38,8 +40,11 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName, String lastName, String email,
-                   String password, AppUserRole appUserRole) {
+    public AppUser(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -63,7 +68,6 @@ public class AppUser implements UserDetails {
     public String getUsername() {
         return email;
     }
-
 
     public String getFirstName() {
         return firstName;
